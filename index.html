@@ -748,6 +748,189 @@ body {
   transition: width 0.4s;
 }
 
+/* === HUNT TIMER === */
+.hunt-timer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--ink);
+  color: white;
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  font-family: sans-serif;
+}
+.hunt-timer-display {
+  font-size: 22px;
+  font-weight: 700;
+  font-family: 'Georgia', serif;
+  letter-spacing: 0.02em;
+  color: var(--gold);
+}
+.hunt-timer-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.6);
+}
+.hunt-timer-controls { display: flex; gap: 6px; }
+.timer-btn {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: none;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: sans-serif;
+  cursor: pointer;
+}
+.timer-btn-start { background: var(--green); color: white; }
+.timer-btn-pause { background: var(--gold); color: var(--ink); }
+.timer-btn-stop { background: var(--fleur); color: white; }
+
+/* === MULTIPLE CHOICE === */
+.mcq-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 10px;
+}
+@media (max-width: 380px) {
+  .mcq-choices { grid-template-columns: 1fr; }
+}
+.mcq-choice {
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--mist);
+  background: white;
+  font-size: 12px;
+  font-family: sans-serif;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.mcq-choice:hover { border-color: var(--metro); background: var(--metro-light); }
+.mcq-choice.mcq-correct { border-color: var(--green); background: var(--green-light); color: var(--green); font-weight: 700; }
+.mcq-choice.mcq-wrong { border-color: var(--fleur); background: var(--fleur-light); color: var(--fleur-dark); }
+.mcq-choice.mcq-disabled { pointer-events: none; opacity: 0.7; }
+.mcq-feedback {
+  font-size: 12px;
+  font-family: sans-serif;
+  font-weight: 600;
+  margin-top: 6px;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+}
+.mcq-feedback.correct { background: var(--green-light); color: var(--green); }
+.mcq-feedback.wrong { background: var(--fleur-light); color: var(--fleur-dark); }
+
+/* === BONUS CLUE === */
+.bonus-card {
+  border: 2px dashed var(--gold);
+  border-radius: var(--radius);
+  padding: 14px;
+  margin-top: 14px;
+  background: linear-gradient(135deg,#fdf4de,#fff8e8);
+}
+.bonus-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: sans-serif;
+  color: #8B6914;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.bonus-reveal-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  border: 2px dashed var(--gold);
+  background: white;
+  color: #8B6914;
+  font-family: sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* === PASSPORT === */
+.passport-page {
+  background: linear-gradient(135deg,#1A1A2E,#2A1F5C);
+  border-radius: var(--radius);
+  padding: 24px;
+  color: white;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.passport-title { font-size: 22px; font-family: Georgia, serif; margin-bottom: 4px; }
+.passport-sub { font-size: 12px; font-family: sans-serif; color: rgba(255,255,255,0.6); margin-bottom: 16px; }
+.passport-stat-row { display: flex; justify-content: center; gap: 24px; margin-top: 8px; }
+.passport-stat-num { font-size: 28px; font-weight: 700; font-family: Georgia, serif; color: var(--gold); }
+.passport-stat-label { font-size: 10px; font-family: sans-serif; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(255,255,255,0.6); }
+
+.stamp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 10px;
+}
+.stamp {
+  border: 2px solid var(--mist);
+  border-radius: var(--radius-sm);
+  padding: 12px 6px;
+  text-align: center;
+  font-family: sans-serif;
+  opacity: 0.35;
+  filter: grayscale(1);
+  transition: all 0.3s;
+}
+.stamp.earned {
+  opacity: 1;
+  filter: none;
+  border-color: var(--gold);
+  background: #fdf4de;
+  transform: rotate(-2deg);
+  box-shadow: 0 2px 6px rgba(212,167,44,0.3);
+}
+.stamp-emoji { font-size: 28px; margin-bottom: 4px; }
+.stamp-name { font-size: 10px; font-weight: 700; line-height: 1.2; }
+.stamp-time { font-size: 9px; color: var(--subtext); margin-top: 2px; }
+
+/* === CONFETTI === */
+#confetti-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+.confetti-piece {
+  position: absolute;
+  top: -10px;
+  width: 8px;
+  height: 14px;
+  opacity: 0.9;
+  animation: confettiFall linear forwards;
+}
+@keyframes confettiFall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(540deg); opacity: 0.4; }
+}
+
+.completion-banner {
+  background: linear-gradient(135deg, var(--gold), #b8860a);
+  color: var(--ink);
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+  margin-bottom: 14px;
+  font-family: sans-serif;
+}
+.completion-banner-title { font-size: 18px; font-weight: 700; font-family: Georgia, serif; margin-bottom: 4px; }
+.completion-banner-sub { font-size: 12px; }
+
 /* === ACCESSIBILITY === */
 button:focus-visible, a:focus-visible, input:focus-visible {
   outline: 2px solid var(--metro);
@@ -878,6 +1061,7 @@ button:focus-visible, a:focus-visible, input:focus-visible {
     <button class="nav-tab" data-page="map">🗺 Map</button>
     <button class="nav-tab" data-page="metro">🚇 Metro</button>
     <button class="nav-tab" data-page="hunt">🎯 Scavenger Hunt</button>
+    <button class="nav-tab" data-page="passport">📔 Passport</button>
     <button class="nav-tab" data-page="districts">🏘 Districts</button>
     <button class="nav-tab" data-page="eat">🍽 Eat &amp; Drink</button>
     <button class="nav-tab" data-page="nature">🌿 Parks &amp; Nature</button>
@@ -1204,6 +1388,19 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 
     <!-- HUNT LIST -->
     <div id="hunt-list"></div>
+
+  </div>
+
+  <!-- ===================== PASSPORT PAGE ===================== -->
+  <div id="page-passport" class="page">
+
+    <div class="passport-page">
+      <div class="passport-title">📔 Your Montréal Passport</div>
+      <div class="passport-sub">Every completed hunt earns a stamp. Collect all 14 districts.</div>
+      <div class="passport-stat-row" id="passport-stats"></div>
+    </div>
+
+    <div class="stamp-grid" id="passport-stamps"></div>
 
   </div>
 
@@ -1639,13 +1836,17 @@ const SCAVENGER_HUNTS = [
     startAt: 'Place d\'Armes metro station (Orange Line), main exit',
     description: 'Discover centuries of history on cobblestone streets, find hidden courtyards, and decode the secrets of the oldest city in North America.',
     clues: [
-      { type: 'trivia', text: 'You start at Place d\'Armes, Montréal\'s oldest public square. Face the building with the green dome. What year is inscribed on the façade of Notre-Dame Basilica above the main doors?', hint: 'Look high up on the stone facade between the twin towers.', answer: '1829 (completed and opened)', points: 10, emoji: '⛪' },
-      { type: 'observation', text: 'Walk to the Old Port (Vieux-Port). Find the Grande Roue de Montréal (giant Ferris wheel) and count how many gondola cars it has. (Hint: it\'s between 40 and 60)', hint: 'Stand back along the waterfront for the best view to count.', answer: '42 gondola cars', points: 15, emoji: '🎡' },
+      { type: 'trivia', text: 'You start at Place d\'Armes, Montréal\'s oldest public square. Face the building with the green dome. What year is inscribed on the façade of Notre-Dame Basilica above the main doors?', hint: 'Look high up on the stone facade between the twin towers.', answer: '1829 (completed and opened)', points: 10, emoji: '⛪',
+        choices: ['1742', '1829', '1867', '1901'], correctIndex: 1 },
+      { type: 'observation', text: 'Walk to the Old Port (Vieux-Port). Find the Grande Roue de Montréal (giant Ferris wheel) and count how many gondola cars it has. (Hint: it\'s between 40 and 60)', hint: 'Stand back along the waterfront for the best view to count.', answer: '42 gondola cars', points: 15, emoji: '🎡',
+        choices: ['36 gondolas', '42 gondolas', '50 gondolas', '58 gondolas'], correctIndex: 1 },
       { type: 'photo', text: 'Find Rue Saint-Paul Ouest — the oldest commercial street in Canada. Take (or imagine) a photo of a storefront whose address number contains all ODD digits only.', hint: 'Walk from the Old Port end toward Place Jacques-Cartier.', answer: 'Many options — e.g. #357, #111, #159', points: 20, emoji: '📸' },
       { type: 'trivia', text: 'At Place Jacques-Cartier, there is a column with a statue of Lord Nelson. Why is this controversial in Montréal?', hint: 'Think about who Lord Nelson was and what language the locals speak here.', answer: 'Nelson defeated Napoleon\'s fleet — celebrating a British naval hero in a French city is historically provocative. Some have called for its removal.', points: 15, emoji: '🗽' },
-      { type: 'observation', text: 'Find the silver dome of Marché Bonsecours. Through the main doors, count the number of cast-iron columns supporting the ground floor ceiling.', hint: 'The market is open daily. Look for the tall cast iron columns as you enter.', answer: 'Approximately 12 cast iron columns', points: 10, emoji: '🏛' },
+      { type: 'observation', text: 'Find the silver dome of Marché Bonsecours. Through the main doors, count the number of cast-iron columns supporting the ground floor ceiling.', hint: 'The market is open daily. Look for the tall cast iron columns as you enter.', answer: 'Approximately 12 cast iron columns', points: 10, emoji: '🏛',
+        choices: ['6 columns', '12 columns', '20 columns', '30 columns'], correctIndex: 1 },
       { type: 'riddle', text: 'I am the oldest church in Montréal, not the most famous. I sit on Rue Notre-Dame Est near the port. Sailors prayed here before crossing the Atlantic. My name means "Our Lady of Good Help." What am I?', hint: 'Walk east along Notre-Dame Est from Bonsecours Market.', answer: 'Chapelle Notre-Dame-de-Bon-Secours (Our Lady of Good Help Chapel)', points: 25, emoji: '⛪' },
-    ]
+    ],
+    bonus: { type: 'trivia', text: 'BONUS: Climb to the Notre-Dame-de-Bon-Secours Chapel\'s "Sailors\' Church" lookout tower (small fee). Model ships hang from the ceiling inside. Why did sailors traditionally donate model ships to this chapel?', hint: 'Think about what sailors would want before a dangerous Atlantic crossing.', answer: 'Sailors gave model ships as offerings of thanks for safe voyages, or as prayers for protection before departing — the chapel became known as the "Sailors\' Church" because of this maritime devotion.', points: 40, emoji: '⛵' }
   },
   {
     id: 'plateau-2hr',
@@ -1672,14 +1873,17 @@ const SCAVENGER_HUNTS = [
     description: 'Explore the spiral staircases, smoked meat temples, bohemian cafés, and secret green alleys of Montréal\'s most beloved neighbourhood.',
     clues: [
       { type: 'observation', text: 'Exit Mont-Royal metro and walk west on Avenue du Mont-Royal. Montréal row houses have exterior spiral staircases unique to this city. Count the number of staircases on the SOUTH side of Mont-Royal Ave between the metro and Clark St (about 3 blocks).', hint: 'Look for external staircases climbing to 2nd-floor doors on residential buildings.', answer: 'Approximately 8–14 staircases in this stretch', points: 15, emoji: '🏠' },
-      { type: 'trivia', text: 'Turn onto Boulevard Saint-Laurent (The Main). This street historically divided Montréal into English (west) and French (east). At number 3895, what world-famous deli has been smoking meat since 1928?', hint: 'Look for the lineup stretching out the door.', answer: 'Schwartz\'s Deli (Chez Schwartz Charcuterie Hébraïque)', points: 10, emoji: '🥩' },
+      { type: 'trivia', text: 'Turn onto Boulevard Saint-Laurent (The Main). This street historically divided Montréal into English (west) and French (east). At number 3895, what world-famous deli has been smoking meat since 1928?', hint: 'Look for the lineup stretching out the door.', answer: 'Schwartz\'s Deli (Chez Schwartz Charcuterie Hébraïque)', points: 10, emoji: '🥩',
+        choices: ['Schwartz\'s Deli', 'Wilensky\'s', 'L\'Express', 'Beauty\'s'], correctIndex: 0 },
       { type: 'photo', text: 'Walk to a "ruelle verte" (green alley). Find any back alley behind the row houses between Saint-Denis and Saint-Laurent streets. Describe or photograph one thing growing in the alley that surprises you.', hint: 'Walk through any small alley (ruelle) running north-south between the main streets. Residents have created gardens here.', answer: 'Varies — tomato plants, murals, vegetable gardens, flower boxes, chickens are all found in ruelles.', points: 20, emoji: '🌱' },
-      { type: 'riddle', text: 'I am a park with two lakes. In summer, ducks rule me and theatre is free. In winter, I freeze and skaters glide over me. My name is a French family name that starts with "La". What park am I?', hint: 'Walk south on Saint-Denis toward Sherbrooke St.', answer: 'Parc La Fontaine', points: 15, emoji: '🦆' },
+      { type: 'riddle', text: 'I am a park with two lakes. In summer, ducks rule me and theatre is free. In winter, I freeze and skaters glide over me. My name is a French family name that starts with "La". What park am I?', hint: 'Walk south on Saint-Denis toward Sherbrooke St.', answer: 'Parc La Fontaine', points: 15, emoji: '🦆',
+        choices: ['Parc La Fontaine', 'Parc Jarry', 'Parc Angrignon', 'Parc Maisonneuve'], correctIndex: 0 },
       { type: 'trivia', text: 'At Parc La Fontaine, find the statue of Félix Leclerc. Who was Félix Leclerc and why is he celebrated in Québec?', hint: 'The statue is near the main pond. Read the plaque at the base.', answer: 'Félix Leclerc (1914–1988) was the first major Québécois singer-songwriter. He is considered the father of chanson québécoise and a national cultural hero.', points: 20, emoji: '🎸' },
       { type: 'observation', text: 'Walk north on Rue Rachel. Montréal is famous for its outdoor murals. Find the first large-scale mural (covering at least one full building wall) you see on Rachel or the side streets. Describe it.', hint: 'Look at the sides of buildings — many are painted with large artwork.', answer: 'Varies — check local street art databases. The Plateau has hundreds of murals.', points: 15, emoji: '🎨' },
       { type: 'photo', text: 'Find Avenue Duluth, known for its BYOW (bring your own wine) restaurants. How many BYOW restaurants can you count on Duluth between Saint-Denis and Saint-Laurent?', hint: 'Look for signs saying "Apportez votre vin" (bring your wine) in windows.', answer: 'Approximately 12–20 BYOW restaurants on this stretch', points: 15, emoji: '🍷' },
       { type: 'riddle', text: 'I am a Sunday summer tradition at the base of the mountain. Thousands gather to drum, dance, and battle with foam swords. I start at the foot of a monument to a Father of Confederation. What am I called, and who is the monument for?', hint: 'Walk north up Saint-Laurent toward Mont-Royal Park.', answer: 'Tam-Tams, at the monument to Sir George-Étienne Cartier (Father of Confederation)', points: 25, emoji: '🥁' },
-    ]
+    ],
+    bonus: { type: 'trivia', text: 'BONUS: Montréal\'s exterior spiral staircases became a defining architectural feature almost by accident. What 1940s-era municipal bylaw change caused property owners to build them on the OUTSIDE of buildings instead of inside?', hint: 'Think about what owners were trying to save by building stairs outdoors.', answer: 'Montréal taxed buildings partly based on interior floor space (and indoor staircases ate into livable square footage that owners paid tax on or could otherwise rent out). Building staircases outside saved interior space and construction costs, and from the early 1900s onward, this became the dominant style across the Plateau — though the city eventually banned NEW exterior staircases in 1940 for snow/ice safety reasons, which is why the existing ones are now protected heritage features.', points: 35, emoji: '🏗' }
   },
   {
     id: 'mile-end-2hr',
@@ -1711,9 +1915,11 @@ const SCAVENGER_HUNTS = [
       { type: 'photo', text: 'Mile End is a historic centre of Montréal\'s Jewish community. Find the oldest-looking Jewish deli, butcher, or kosher shop on Bernard Ave or Saint-Viateur. What is its name?', hint: 'Walk along Bernard Ave between Saint-Laurent and Parc Ave.', answer: 'Varies — options include Wilensky\'s Light Lunch (1932), Boulangerie Cheskie, or local kosher butchers', points: 15, emoji: '✡' },
       { type: 'trivia', text: 'The band Arcade Fire grew up in Mile End and their first shows were in Mile End living rooms and churches. Find a building on Saint-Laurent or Bernard that is associated with local music (a former venue, recording studio, or band-related location).', hint: 'Look for plaques, historical signs, or ask a local.', answer: 'Varies — many options including Hotel2Tango recording studio, Sala Rossa, Casa del Popolo', points: 25, emoji: '🎵' },
       { type: 'observation', text: 'Find Parc Lahaie or any small parkette in Mile End. Count the number of languages you can hear being spoken by people in or around the park within 5 minutes.', hint: 'Sit on a bench in the park and listen carefully.', answer: 'Typically 3–5 languages: French, English, Yiddish, Italian, Spanish, Greek are all common', points: 20, emoji: '🗣' },
-      { type: 'riddle', text: 'I am a tiny lunch counter that has not changed since 1932. I serve only one sandwich, the "Special," and I will insist you take mustard. My name sounds like someone who "wins" something. What am I?', hint: 'Walk to 34 Fairmount Ave Ouest.', answer: 'Wilensky\'s Light Lunch', points: 20, emoji: '🥪' },
+      { type: 'riddle', text: 'I am a tiny lunch counter that has not changed since 1932. I serve only one sandwich, the "Special," and I will insist you take mustard. My name sounds like someone who "wins" something. What am I?', hint: 'Walk to 34 Fairmount Ave Ouest.', answer: 'Wilensky\'s Light Lunch', points: 20, emoji: '🥪',
+        choices: ['Wilensky\'s Light Lunch', 'Beauty\'s Luncheonette', 'Schwartz\'s Deli', 'Café Olimpico'], correctIndex: 0 },
       { type: 'photo', text: 'Find any large piece of street art or mural in Mile End that incorporates text or words. Write down or photograph the text.', hint: 'Check side walls on Saint-Laurent, Saint-Viateur, or Bernard.', answer: 'Varies — Mile End has some of Montréal\'s most celebrated murals.', points: 15, emoji: '🖌' },
-    ]
+    ],
+    bonus: { type: 'trivia', text: 'BONUS: Mile End sits at the boundary of a long-running rivalry between two bagel shops just two blocks apart. Both claim to be the "real" Montréal bagel. What is the one ingredient difference in HOW each shop boils its bagels before baking that bagel purists debate most?', hint: 'Think about what\'s added to the boiling water to sweeten the dough before it goes in the wood oven.', answer: 'Both Fairmount and St-Viateur boil their bagels in water sweetened with honey before baking — the actual debate among purists is less about ingredients and more about subtle differences in dough density, hole size, and how long each is baked in the wood-fired oven, since the honey-water-boil technique itself is shared by both shops and is what makes Montréal bagels sweeter than New York\'s.', points: 35, emoji: '🥯' }
   },
   {
     id: 'downtown-2hr',
@@ -1744,10 +1950,13 @@ const SCAVENGER_HUNTS = [
       { type: 'trivia', text: 'The Musée des Beaux-Arts de Montréal (MBAM) on Sherbrooke is free for its permanent collection. What internationally-known architect designed the modern addition (the Jean-Noël Desmarais Pavilion) completed in 1991?', hint: 'Look for an information plaque near the museum entrance or check the building design.', answer: 'Moshe Safdie (Israeli-Canadian architect who also designed Habitat 67)', points: 25, emoji: '🎨' },
       { type: 'observation', text: 'Walk underground via any downtown building to find the RÉSO — Montréal\'s famous underground city network. How many metro stations does it connect? (Look for RÉSO signage or maps in the underground network)', hint: 'Enter any building on Sainte-Catherine and follow "RÉSO" or "underground path" signs downward.', answer: 'The RÉSO connects 10 metro stations and over 60 buildings via 33km of tunnels', points: 20, emoji: '🌐' },
       { type: 'photo', text: 'Find Rue Crescent — the anglophone entertainment district. Now find Rue Saint-Denis, 10 minutes east — the francophone equivalent. Describe one key difference between the two streets\' atmosphere or architecture.', hint: 'Walk between the two streets along Sainte-Catherine.', answer: 'Crescent: English bars, Irish pubs, brick buildings, English signs. Saint-Denis: French terrasse cafés, Québécois restaurants, French signs, more residential upper floors.', points: 15, emoji: '🍺' },
-      { type: 'riddle', text: 'I am a giant cruciform tower and I once held the title of tallest building in the British Commonwealth when I was built in 1962. I sit above an underground shopping complex and my name refers to a central location in a city. What am I?', hint: 'Look for a distinctive + shaped tower near Cathédrale Marie-Reine-du-Monde.', answer: 'Place Ville Marie', points: 20, emoji: '🏢' },
-      { type: 'trivia', text: 'Find Cathédrale Marie-Reine-du-Monde on René-Lévesque Blvd. It is a one-third scale replica of which famous Roman church?', hint: 'Compare the façade and dome to any famous Italian basilica you may know.', answer: 'St. Peter\'s Basilica in Vatican City, Rome', points: 15, emoji: '⛪' },
+      { type: 'riddle', text: 'I am a giant cruciform tower and I once held the title of tallest building in the British Commonwealth when I was built in 1962. I sit above an underground shopping complex and my name refers to a central location in a city. What am I?', hint: 'Look for a distinctive + shaped tower near Cathédrale Marie-Reine-du-Monde.', answer: 'Place Ville Marie', points: 20, emoji: '🏢',
+        choices: ['Place Ville Marie', '1000 de la Gauchetière', 'Tour de la Bourse', 'Habitat 67'], correctIndex: 0 },
+      { type: 'trivia', text: 'Find Cathédrale Marie-Reine-du-Monde on René-Lévesque Blvd. It is a one-third scale replica of which famous Roman church?', hint: 'Compare the façade and dome to any famous Italian basilica you may know.', answer: 'St. Peter\'s Basilica in Vatican City, Rome', points: 15, emoji: '⛪',
+        choices: ['St. Peter\'s Basilica, Rome', 'Notre-Dame, Paris', 'St. Paul\'s Cathedral, London', 'Florence Cathedral'], correctIndex: 0 },
       { type: 'observation', text: 'Walk along Sainte-Catherine Street (the main shopping artery). Find the old Eaton\'s building or Complexe Les Ailes — inside the 9th floor is the "Eaton\'s 9th Floor Restaurant," a grand Art Deco dining room from the 1930s. Is it currently open? What is it used for now?', hint: 'This floor is above the current stores. Check for access or look it up on posted information.', answer: 'The Eaton\'s 9th Floor (Le 9e) is a restored Art Deco restaurant and event space — one of the most stunning rooms in Montréal, often open for lunch and events.', points: 20, emoji: '🏛' },
-    ]
+    ],
+    bonus: { type: 'trivia', text: 'BONUS: Place Ville Marie\'s cruciform (cross-shaped) floor plan was a deliberate design choice by architect I.M. Pei. What practical reason — beyond aesthetics — drove the X/cross shape rather than a simple rectangular tower?', hint: 'Think about what a thinner, branching floor plan does for the offices inside compared to one giant rectangular floor.', answer: 'The cruciform shape maximizes the amount of office space that gets natural light and outside views, since every office is close to a window in the narrower wings — unlike a deep rectangular floor plan where interior offices would be far from any window. It also reduced wind load issues for what was then one of the tallest buildings in the British Commonwealth.', points: 35, emoji: '🏢' }
   },
   {
     id: 'mont-royal-3hr',
@@ -1773,15 +1982,18 @@ const SCAVENGER_HUNTS = [
     startAt: 'Mont-Royal metro (Orange Line), then walk north up Parc Ave to Park entrance',
     description: 'Climb the mountain that defines Montréal. Find the cross, the beaver lake, the lookout, and learn the secrets of the forest that sits at the city\'s centre.',
     clues: [
-      { type: 'trivia', text: 'As you enter the park, find the Smith House (Maison Smith) — the park\'s interpretation centre. How many hectares does Parc du Mont-Royal cover? Find this fact on display.', hint: 'The information displays inside Smith House answer this directly.', answer: '193 hectares', points: 10, emoji: '🏡' },
+      { type: 'trivia', text: 'As you enter the park, find the Smith House (Maison Smith) — the park\'s interpretation centre. How many hectares does Parc du Mont-Royal cover? Find this fact on display.', hint: 'The information displays inside Smith House answer this directly.', answer: '193 hectares', points: 10, emoji: '🏡',
+        choices: ['95 hectares', '193 hectares', '340 hectares', '500 hectares'], correctIndex: 1 },
       { type: 'observation', text: 'Follow the main Olmsted Road path upward. Frederick Law Olmsted designed both this park AND Central Park in New York. Find any physical similarity between the two parks that you can observe in the trail design.', hint: 'Think about curved roads, broad carriage paths, naturalistic plantings — what was Olmsted\'s style?', answer: 'Naturalistic winding carriage roads, meadows visible between trees, designed to feel "natural" while being entirely planned, mixed forest composition.', points: 20, emoji: '🗺' },
-      { type: 'riddle', text: 'I am a small body of water near the top of the mountain. My name suggests a small dam-building animal lives nearby (and they actually do). On a winter day, I become a skating rink. What am I called?', hint: 'Follow signs toward the "lac" near the summit area.', answer: 'Lac des Castors (Beaver Lake)', points: 15, emoji: '🦫' },
+      { type: 'riddle', text: 'I am a small body of water near the top of the mountain. My name suggests a small dam-building animal lives nearby (and they actually do). On a winter day, I become a skating rink. What am I called?', hint: 'Follow signs toward the "lac" near the summit area.', answer: 'Lac des Castors (Beaver Lake)', points: 15, emoji: '🦫',
+        choices: ['Lac des Castors', 'Lac aux Loutres', 'Lac de la Tortue', 'Lac du Renard'], correctIndex: 0 },
       { type: 'observation', text: 'From the main Chalet lookout terrace, look south over the city. Using the horizon: in what direction does the St. Lawrence River flow as it passes Montréal (roughly east, west, north, or south)?', hint: 'You can see the river from the chalet. Think about which way a boat would travel.', answer: 'The St. Lawrence flows roughly east-northeast past Montréal, toward Québec City and the Atlantic Ocean.', points: 15, emoji: '🌊' },
       { type: 'trivia', text: 'The large illuminated cross near the summit commemorates a famous vow. Who made the vow, in what year, and what were they asking for help with?', hint: 'Find the historical marker near the cross.', answer: 'Paul de Chomedey de Maisonneuve, founder of Montréal, vowed to carry a wooden cross to the mountain summit in 1643 if the settlement survived flooding. It did, and he carried the cross in 1643.', points: 25, emoji: '✝' },
       { type: 'photo', text: 'The mountain has three peaks (the "trois coteaux" that give Montréal its name). Find any spot where you can see or sense being on a ridge between two valleys. Describe or photograph the view.', hint: 'The three summits are: the main (chalet) summit, Westmount Summit, and Outremont Summit. Walk the ridge path.', answer: 'Varies — the ridge walk between peaks offers views both toward downtown and toward the north of the island.', points: 20, emoji: '⛰' },
       { type: 'observation', text: 'Find the Cimetière Mont-Royal (protestant) or Cimetière Notre-Dame-des-Neiges (catholic — one of the largest in North America). Both occupy large sections of the mountain. Find the grave of one notable historical figure and write their name and dates.', hint: 'The cemeteries are on the north slope. Notable graves include Anna Leonowens (from "The King and I") and politicians/artists.', answer: 'Varies — Anna Leonowens, Charles Dawson, various Québec politicians and artists are buried here.', points: 20, emoji: '🪦' },
       { type: 'riddle', text: 'On Sunday summers, thousands come to my base for a spontaneous gathering with drums, music, dancing, and foam-sword battles near a large equestrian statue. I am a tradition, not an organization. No tickets, no organizer. What am I?', hint: 'Return to the George-Étienne Cartier monument on Remembrance Rd / Park Ave.', answer: 'Tam-Tams — Montréal\'s famous weekly spontaneous drum circle at the George-Étienne Cartier monument', points: 15, emoji: '🥁' },
-    ]
+    ],
+    bonus: { type: 'trivia', text: 'BONUS: Mont Royal is technically not a mountain by most geological definitions — it\'s often called a hill. But it IS part of a real geological phenomenon found across the region (Mont Saint-Hilaire, Mont Saint-Bruno, etc). What is this type of isolated, dome-shaped hill formation called?', hint: 'It involves magma that never made it to the surface, far beneath what is now flat farmland.', answer: 'These are called Monteregian Hills (or Montérégiennes) — a chain of isolated igneous intrusions formed roughly 125 million years ago when magma pushed up beneath the sedimentary rock of the St. Lawrence Lowlands but cooled before erupting as volcanoes. Erosion over millions of years wore away the softer surrounding rock, leaving these harder igneous hills standing alone on the flat landscape.', points: 40, emoji: '🌋' }
   },
   {
     id: 'village-2hr',
@@ -1809,11 +2021,14 @@ const SCAVENGER_HUNTS = [
       { type: 'observation', text: 'Exit Beaudry metro and walk onto Sainte-Catherine Est (in summer this is pedestrianized). Look up — the street is decorated with thousands of colourful balls strung between the buildings. Count how many strands cross above the street in the first 100 metres.', hint: 'They are hung in parallel strands crossing above the pedestrian zone.', answer: 'Approximately 180,000 balls total on the street; count roughly 20–30 strands in the first block', points: 15, emoji: '🌈' },
       { type: 'trivia', text: 'Find the Archives gaies du Québec (Québec Gay Archives). What year was it founded, and why are archives like this historically important for LGBTQ+ communities?', hint: 'The archives are in a building on Sainte-Catherine Est. Look for signage or a plaque.', answer: 'Founded 1983 — important because LGBTQ+ history was suppressed, erased, or criminalized. Archives preserve stories, photographs, and documents that would otherwise be lost.', points: 25, emoji: '📚' },
       { type: 'observation', text: 'Walk to the corner of Sainte-Catherine Est and Amherst. Find any public artwork or mural that celebrates queer identity or history. Describe what you see.', hint: 'Look at building sides, bus shelters, and public installations along the street.', answer: 'Varies — the Village has many community murals, particularly around Amherst and Alexandre-DeSève streets.', points: 15, emoji: '🎨' },
-      { type: 'riddle', text: 'I am a historic cabaret venue in the Village that has hosted drag performers since the 1970s. My name is ancient Egyptian. I am at the corner of Saint-Laurent and Sainte-Catherine. What am I?', hint: 'Think of ancient Egypt and the famous queen of the Nile.', answer: 'Café Cléopâtre (Cleopatra\'s Café)', points: 20, emoji: '🎭' },
-      { type: 'trivia', text: 'Find Parc Émilie-Gamelin (or nearby Berri-UQAM plaza). This was a famous gathering point for Montréal\'s counterculture. What major metro hub is directly below this park?', hint: 'Go to the large plaza near the junction of several busy streets.', answer: 'Berri-UQAM metro station — the only station connecting the Green, Orange, AND Yellow lines', points: 15, emoji: '🚇' },
+      { type: 'riddle', text: 'I am a historic cabaret venue in the Village that has hosted drag performers since the 1970s. My name is ancient Egyptian. I am at the corner of Saint-Laurent and Sainte-Catherine. What am I?', hint: 'Think of ancient Egypt and the famous queen of the Nile.', answer: 'Café Cléopâtre (Cleopatra\'s Café)', points: 20, emoji: '🎭',
+        choices: ['Café Cléopâtre', 'Cabaret Mado', 'Complexe Sky', 'Unity Nightclub'], correctIndex: 0 },
+      { type: 'trivia', text: 'Find Parc Émilie-Gamelin (or nearby Berri-UQAM plaza). This was a famous gathering point for Montréal\'s counterculture. What major metro hub is directly below this park?', hint: 'Go to the large plaza near the junction of several busy streets.', answer: 'Berri-UQAM metro station — the only station connecting the Green, Orange, AND Yellow lines', points: 15, emoji: '🚇',
+        choices: ['Berri-UQAM', 'Beaudry', 'Papineau', 'Préfontaine'], correctIndex: 0 },
       { type: 'observation', text: 'Walk up Rue Alexandre-DeSève (one block east of Amherst). This quiet side street has several community organizations and murals. Find the largest mural on this street and estimate its dimensions (height × width).', hint: 'Walk the full length of the street from Sainte-Catherine north.', answer: 'Varies — several large murals. Some are 10m × 20m on full building walls.', points: 15, emoji: '📐' },
       { type: 'photo', text: 'The Divers/Cité LGBTQ+ festival (usually in late July) is one of the largest in Canada. Find any permanent marker, plaque, or heritage sign in the Village that dates its history before 1990.', hint: 'Look for plaques on older buildings, heritage markers, or historical information panels.', answer: 'Varies — heritage plaques on several buildings date to the 1970s–80s activism era; the Bain Coloniale bathhouse has historical significance.', points: 20, emoji: '🏳️‍🌈' },
-    ]
+    ],
+    bonus: { type: 'trivia', text: 'BONUS: Montréal\'s Village became one of North America\'s largest gay neighbourhoods partly due to a specific 1980s urban geography shift. What happened to the previous "gay village" location downtown that pushed the community to relocate east to where it is today?', hint: 'Think about what happens to a neighbourhood when rents rise sharply, or when a major development project changes a downtown area.', answer: 'Montréal\'s gay community was originally centred more around downtown / the Quartier Latin in earlier decades, but rising rents, urban redevelopment, and the construction/expansion of nearby institutions gradually pushed bars and community spaces east along Sainte-Catherine toward the current Village location near Beaudry and Papineau metro stations, where cheaper rents and existing nightlife infrastructure allowed the community to consolidate and grow through the 1980s and 90s into the dense, pedestrianized Village known today.', points: 35, emoji: '🏳️‍🌈' }
   },
   {
     id: 'littleitaly-4hr',
@@ -1841,15 +2056,252 @@ const SCAVENGER_HUNTS = [
     clues: [
       { type: 'trivia', text: 'Jean-Talon Market is described as the largest open-air market in North America. How many vendors operate here at peak season (summer)? Find this information on a market sign or display board.', hint: 'Information boards near market entrances list vendor counts.', answer: 'Approximately 300+ vendors in summer at peak season', points: 10, emoji: '🧅' },
       { type: 'observation', text: 'Walk to the Jean-Talon Market\'s interior and find a vendor selling maple products. List three products they sell that are made from maple syrup (beyond the syrup itself).', hint: 'Maple vendors are usually in the central or east section of the market.', answer: 'Examples: maple butter, maple taffy, maple candies, maple vinegar, maple mustard, maple granola, maple-smoked meats, maple tea, maple syrup caramels', points: 15, emoji: '🍁' },
-      { type: 'riddle', text: 'Walk to Rue Dante — the heart of Little Italy. Find a church that has a controversial fresco painted inside its ceiling. The fresco was painted in 1933 and depicts a world leader on horseback. Who is depicted, and why is this controversial?', hint: 'Look for Église Madonna della Difesa (Church of Our Lady of Protection) on Henri-Julien Ave at Dante.', answer: 'Benito Mussolini (Italian fascist dictator) is depicted in the ceiling fresco, painted by Guido Nincheri in 1933 when Mussolini was popular in Italy. It sparked debate about whether to remove or preserve it as a historical document.', points: 30, emoji: '⛪' },
+      { type: 'riddle', text: 'Walk to Rue Dante — the heart of Little Italy. Find a church that has a controversial fresco painted inside its ceiling. The fresco was painted in 1933 and depicts a world leader on horseback. Who is depicted, and why is this controversial?', hint: 'Look for Église Madonna della Difesa (Church of Our Lady of Protection) on Henri-Julien Ave at Dante.', answer: 'Benito Mussolini (Italian fascist dictator) is depicted in the ceiling fresco, painted by Guido Nincheri in 1933 when Mussolini was popular in Italy. It sparked debate about whether to remove or preserve it as a historical document.', points: 30, emoji: '⛪',
+        choices: ['Benito Mussolini', 'Victor Emmanuel III', 'Julius Caesar', 'Garibaldi'], correctIndex: 0 },
       { type: 'observation', text: 'Walk along Rue Dante between Saint-Laurent and Henri-Julien. Find a traditional Italian épicerie (grocery/deli). List 3 Italian products you can see in the window or shop.', hint: 'There are several Italian food shops and delis on Dante — look for salumi, olive oil, pasta, etc.', answer: 'Varies — examples: imported olive oil, prosciutto, pecorino, dried pasta, canned tomatoes, panettone, grappa, mortadella, fresh pasta', points: 15, emoji: '🫒' },
-      { type: 'trivia', text: 'Find Café San Simeon or another old-school Italian espresso bar on Dante or Saint-Laurent (in Little Italy). What is the Italian term for a very short, concentrated espresso that you drink standing at the bar?', hint: 'Ask the barista or look at a menu board.', answer: 'Un ristretto (or simply "espresso" — in Italian tradition it\'s drunk standing at the counter)', points: 20, emoji: '☕' },
+      { type: 'trivia', text: 'Find Café San Simeon or another old-school Italian espresso bar on Dante or Saint-Laurent (in Little Italy). What is the Italian term for a very short, concentrated espresso that you drink standing at the bar?', hint: 'Ask the barista or look at a menu board.', answer: 'Un ristretto (or simply "espresso" — in Italian tradition it\'s drunk standing at the counter)', points: 20, emoji: '☕',
+        choices: ['Ristretto', 'Macchiato', 'Cortado', 'Affogato'], correctIndex: 0 },
       { type: 'photo', text: 'Walk east from Dante into Rosemont proper. Rosemont is known for its beautiful "duplex" and "triplex" architecture. Find the most ornate or decorative exterior staircase you can — describe or photograph it.', hint: 'Walk along any residential street between Beaubien and Rosemont Blvd.', answer: 'Varies — wrought iron railings, tiled landings, carved newel posts, coloured brick, stained glass transoms are all common.', points: 20, emoji: '🏠' },
       { type: 'observation', text: 'Find Avenue Laurier Est (in Rosemont/Plateau area). This street has transformed from working-class to one of Montréal\'s trendiest dining and shopping strips. Count the number of "apportez votre vin" (BYOW) restaurants in a 3-block stretch.', hint: 'Walk Laurier Est between Saint-Denis and Papineau.', answer: 'Typically 8–15 BYOW restaurants in this stretch', points: 15, emoji: '🍷' },
-      { type: 'riddle', text: 'I am a linear park built on an old railway line. I run through Rosemont and Mile End. Wildflowers grow where trains once rolled. Cyclists and joggers use me. My name refers to the railway workers who once worked on the line I replaced. What am I?', hint: 'Look for a greenway path that runs north-south through the neighbourhood on an elevated embankment.', answer: 'Le corridor des cheminots (The Railway Workers\' Corridor)', points: 25, emoji: '🛤' },
+      { type: 'riddle', text: 'I am a linear park built on an old railway line. I run through Rosemont and Mile End. Wildflowers grow where trains once rolled. Cyclists and joggers use me. My name refers to the railway workers who once worked on the line I replaced. What am I?', hint: 'Look for a greenway path that runs north-south through the neighbourhood on an elevated embankment.', answer: 'Le corridor des cheminots (The Railway Workers\' Corridor)', points: 25, emoji: '🛤',
+        choices: ['Le Corridor des Cheminots', 'La Coulée Verte', 'Le Sentier du Canal', 'La Promenade Bellerive'], correctIndex: 0 },
       { type: 'trivia', text: 'Find the Bain Rosemont (a former public bath now converted to a community centre). Why did Montréal have so many "bains publics" (public baths) in the early 20th century?', hint: 'Look for heritage plaques near the building or find information inside.', answer: 'Many working-class Montréal homes (until the 1940s–50s) had no indoor plumbing or bathtubs. Public baths were essential community infrastructure for hygiene. Montréal built dozens of them.', points: 20, emoji: '🛁' },
       { type: 'photo', text: 'Final challenge: Find any business in Little Italy or Rosemont that has been open for MORE than 50 years (look for signs saying "since [year before 1975]" or historical markers). Photograph or note its name and founding year.', hint: 'Old Italian delis, barbershops, and cafés often display their founding year with pride.', answer: 'Varies — examples: Fairmount Bagels (1919), Wilensky\'s (1932), Dante Hardware, Librairie Italienne', points: 25, emoji: '📅' },
-    ]
+    ],
+    bonus: { type: 'trivia', text: 'BONUS: The Madonna della Difesa fresco controversy aside, find the church\'s OTHER notable feature: a series of side-chapel paintings by the same artist depicting scenes from Italian immigrant life in Montréal. What is the artist\'s name?', hint: 'Look for a small plaque crediting the muralist near the entrance.', answer: 'Guido Nincheri — a prolific Italian-Canadian artist who decorated dozens of Québec churches between the 1920s-1950s.', points: 40, emoji: '🎨' }
+  },
+  {
+    id: 'sainthenri-2hr',
+    lat: 45.4790, lng: -73.5870,
+    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/March%C3%A9_Atwater.jpg/640px-March%C3%A9_Atwater.jpg',
+    route: [
+      { lat: 45.4837, lng: -73.5905, label: 'Start: Lionel-Groulx Metro' },
+      { lat: 45.4813, lng: -73.5791, label: 'Atwater Market' },
+      { lat: 45.4805, lng: -73.5820, label: 'Lachine Canal path' },
+      { lat: 45.4775, lng: -73.5895, label: 'Notre-Dame St Saint-Henri' },
+      { lat: 45.4762, lng: -73.5910, label: 'Église Saint-Henri' },
+      { lat: 45.4790, lng: -73.5950, label: 'Place Saint-Henri' }
+    ],
+    title: 'Saint-Henri & the Canal',
+    district: 'Saint-Henri / Little Burgundy',
+    duration: '2 hours',
+    distance: '4km',
+    stops: 7,
+    difficulty: 'Easy',
+    color: '#17A2B8',
+    emoji: '🏭',
+    startAt: 'Lionel-Groulx metro station (Green/Orange Line)',
+    description: 'Once Montréal\'s working-class industrial heartland (made famous by Gabrielle Roy\'s novel "Bonheur d\'occasion"), now a foodie destination along the historic Lachine Canal.',
+    clues: [
+      { type: 'trivia', text: 'Start at Atwater Market, a 1933 Art Deco market hall with a distinctive tower. What was the tower originally used for?', hint: 'Think about what a tall tower might be useful for near a market and fire-prone wooden stalls.', answer: 'A water tower, used for fire protection of the market hall', points: 15, emoji: '🏗',
+        choices: ['A water tower for fire protection', 'A clock tower', 'A lighthouse for the canal', 'A grain silo'], correctIndex: 0 },
+      { type: 'observation', text: 'Walk onto the Lachine Canal path behind the market. Look for informational panels about the canal\'s industrial history. What powered the factories along the canal in the 19th century?', hint: 'The canal itself provided more than transportation — read the heritage panels.', answer: 'Hydraulic power from the canal\'s water flow drove textile mills, flour mills, and foundries', points: 15, emoji: '⚙' },
+      { type: 'riddle', text: 'I am a beloved Québécois novel published in 1945, set in this very neighbourhood during wartime poverty. My title translates to "The Tin Flute." Who wrote me?', hint: 'This novel is considered one of the most important works of Québécois literature.', answer: 'Gabrielle Roy ("Bonheur d\'occasion" / "The Tin Flute")', points: 25, emoji: '📖' },
+      { type: 'photo', text: 'Walk to Rue Notre-Dame Ouest in Saint-Henri. This strip has transformed from working-class shops to trendy boutiques and restaurants. Find a building that still shows its original early-1900s brick facade. Photograph it.', hint: 'Look above modern storefronts for original cornices and brickwork.', answer: 'Varies — many original facades remain above ground-floor renovations.', points: 20, emoji: '🧱' },
+      { type: 'trivia', text: 'Find Église Saint-Henri, the parish church the neighbourhood is named for. What saint is the neighbourhood named after, and what was he known for?', hint: 'Look at the church\'s dedication plaque or facade inscription.', answer: 'Saint Henry (Henri II of Germany), Holy Roman Emperor known for piety and founding monasteries', points: 15, emoji: '⛪',
+        choices: ['Saint Francis of Assisi', 'Saint Henry (Henri II)', 'Saint Patrick', 'Saint Joseph'], correctIndex: 1 },
+      { type: 'observation', text: 'Find Place Saint-Henri, the old town square. Count how many benches face the small fountain or monument at its centre.', hint: 'The square is a small green plaza near the church.', answer: 'Varies by season — typically 6-10 benches', points: 10, emoji: '🪑' },
+      { type: 'photo', text: 'Look for any sign of Saint-Henri\'s industrial past still visible today: a converted factory, an old smokestack, or heritage signage. Photograph it.', hint: 'Walk along the canal-facing streets where old factories have been converted to lofts.', answer: 'Varies — many converted textile mills and factories now house condos and offices.', points: 20, emoji: '🏭' },
+    ],
+    bonus: { type: 'trivia', text: 'BONUS: The Lachine Canal was built in 1825 to bypass the Lachine Rapids. Why were the rapids such a critical obstacle for Montréal\'s development as a port city?', hint: 'Think about what ships needed to do to continue further inland past Montréal.', answer: 'The Lachine Rapids made the St. Lawrence River impassable for ships heading further inland (toward the Great Lakes), forcing all goods to be unloaded and portaged around Montréal — the canal solved this and supercharged industrial growth.', points: 40, emoji: '🚢' }
+  },
+  {
+    id: 'outremont-2hr',
+    lat: 45.5170, lng: -73.6080,
+    img: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=640&q=80',
+    route: [
+      { lat: 45.5198, lng: -73.6088, label: 'Start: Outremont Metro' },
+      { lat: 45.5180, lng: -73.6105, label: 'Avenue Bernard' },
+      { lat: 45.5168, lng: -73.6070, label: 'Parc Outremont' },
+      { lat: 45.5155, lng: -73.6125, label: 'Mount Royal Cemetery edge' },
+      { lat: 45.5190, lng: -73.6040, label: 'Avenue Laurier Ouest' }
+    ],
+    title: 'Outremont Elegance',
+    district: 'Outremont',
+    duration: '2 hours',
+    distance: '3.8km',
+    stops: 7,
+    difficulty: 'Easy',
+    color: '#9B59B6',
+    emoji: '🌳',
+    startAt: 'Outremont metro station (Blue Line)',
+    description: 'Montréal\'s most elegant residential district — tree-lined avenues, grand homes, the city\'s wealthiest francophone enclave, and a sophisticated café scene.',
+    clues: [
+      { type: 'trivia', text: 'Outremont means "beyond the mountain" in French. Which side of Mont-Royal does it sit on, relative to downtown?', hint: 'Think about the literal translation — what would be "beyond" the mountain if you\'re coming from downtown?', answer: 'The north side — Outremont sits on the opposite (north) slope of Mont-Royal from downtown Montréal', points: 10, emoji: '🗺',
+        choices: ['North side', 'South side', 'East side', 'It sits ON the mountain'], correctIndex: 0 },
+      { type: 'observation', text: 'Walk along Avenue Bernard, Outremont\'s café-lined main street. Count the number of independent bakeries or pâtisseries you pass in 3 blocks.', hint: 'Look for French-style bakeries with display windows of pastries.', answer: 'Typically 3-5 bakeries/pâtisseries in this stretch', points: 15, emoji: '🥐' },
+      { type: 'photo', text: 'Outremont is known for its grand Victorian and Art Deco mansions. Find the most architecturally striking house you can on a residential side street off Bernard or Laurier. Photograph it.', hint: 'Side streets like Querbes, Saint-Viateur, or Outremont Ave have grand homes.', answer: 'Varies — many stunning examples of early 20th-century residential architecture.', points: 20, emoji: '🏛' },
+      { type: 'riddle', text: 'I am a small park in the heart of Outremont with a pond, weeping willows, and a war memorial. Locals walk their dogs and read on my benches. What is my name?', hint: 'Look for a green space near the corner of Outremont Ave and Bloomfield.', answer: 'Parc Outremont', points: 15, emoji: '🌳' },
+      { type: 'trivia', text: 'Outremont has historically been home to a large segment of Montréal\'s Hasidic Jewish community, alongside its francophone elite. What is the name of the large Hasidic community concentrated in this area?', hint: 'This community is also prominent in neighbouring Mile End.', answer: 'The Tasher and Belz Hasidic communities, among others — Outremont and Mile End together form one of North America\'s largest Hasidic Jewish population centres.', points: 20, emoji: '✡' },
+      { type: 'observation', text: 'Walk to the edge of Mount Royal Cemetery near Outremont. This is one of North America\'s largest cemeteries. Approximately how many people are buried here?', hint: 'Look for a historical marker or information sign near the cemetery entrance.', answer: 'Over 162,000 people are buried at Mount Royal Cemetery', points: 15, emoji: '🪦',
+        choices: ['About 20,000', 'About 60,000', 'About 162,000', 'About 500,000'], correctIndex: 2 },
+      { type: 'photo', text: 'Find Théâtre Outremont on Bernard Ave, a restored 1929 Art Deco cinema. Photograph its distinctive marquee or facade.', hint: 'It\'s a prominent building partway along Bernard Ave.', answer: 'The Théâtre Outremont opened in 1929 and is a designated heritage building.', points: 20, emoji: '🎬' },
+    ],
+    bonus: { type: 'trivia', text: 'BONUS: Outremont was its own independent city until 2002, when it was merged into the City of Montréal. Many Outremont residents opposed this merger. What was the main concern locals had about merging with Montréal?', hint: 'Think about taxes, local control, and identity for a small wealthy municipality.', answer: 'Concerns centered on losing local political autonomy, potential tax rate increases to subsidize larger Montréal services, and dilution of Outremont\'s distinct community identity — several merged municipalities (including Outremont) later held "demerger" referendums.', points: 40, emoji: '🏛' }
+  },
+  {
+    id: 'verdun-2hr',
+    lat: 45.4580, lng: -73.5680,
+    img: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=640&q=80',
+    route: [
+      { lat: 45.4585, lng: -73.5715, label: 'Start: Verdun Metro' },
+      { lat: 45.4560, lng: -73.5670, label: 'Verdun Beach (Plage de Verdun)' },
+      { lat: 45.4575, lng: -73.5690, label: 'Wellington Street' },
+      { lat: 45.4600, lng: -73.5720, label: 'Promenade Wellington murals' },
+      { lat: 45.4550, lng: -73.5640, label: 'Île-des-Sœurs bridge view' }
+    ],
+    title: 'Verdun Riverside Revival',
+    district: 'Verdun',
+    duration: '2 hours',
+    distance: '4.2km',
+    stops: 7,
+    difficulty: 'Easy',
+    color: '#2D7A4F',
+    emoji: '🏖',
+    startAt: 'Verdun metro station (Green Line)',
+    description: 'A once-overlooked working-class district transformed into one of Montréal\'s hippest neighbourhoods, with an urban beach, a buzzing main street, and unbeatable river views.',
+    clues: [
+      { type: 'trivia', text: 'Verdun is named after a French city. What major historical event is the French city of Verdun famous for?', hint: 'Think World War I — one of the longest and bloodiest battles of the war.', answer: 'The Battle of Verdun (1916), one of the longest and most devastating battles of World War I', points: 15, emoji: '⚔',
+        choices: ['The Battle of Verdun (WWI)', 'The French Revolution', 'The signing of a peace treaty', 'A famous wine harvest'], correctIndex: 0 },
+      { type: 'observation', text: 'Walk to Plage de Verdun, an urban beach along the St. Lawrence River (sand, but no swimming). What recreational activities can you observe people doing here?', hint: 'Look along the boardwalk and sand area for what locals are doing.', answer: 'Varies — sunbathing, volleyball, walking, picnicking, cycling along the path (swimming is NOT permitted due to river currents)', points: 10, emoji: '🏐' },
+      { type: 'photo', text: 'Walk along Wellington Street, Verdun\'s revitalized main commercial strip. Find a building with a colourful mural on its side wall. Photograph it.', hint: 'Wellington between de l\'Église and 6th Ave has several murals.', answer: 'Varies — Verdun has invested heavily in public art along Wellington.', points: 20, emoji: '🎨' },
+      { type: 'riddle', text: 'I am a long riverside path connecting Verdun to neighbouring boroughs. Cyclists, joggers, and dog-walkers use me daily. I run parallel to the St. Lawrence River. What is my name?', hint: 'Look for the paved waterfront promenade running along the river.', answer: 'La Promenade Wellington / the Verdun riverside path (Parc Arthur-Therrien & adjacent waterfront)', points: 15, emoji: '🚴' },
+      { type: 'trivia', text: 'Verdun was historically a working-class, strongly Catholic, French-Canadian district. In the last 15 years it has become known for something else entirely. What demographic/cultural shift has Verdun experienced?', hint: 'Think about who is moving in and what kind of businesses have opened.', answer: 'Verdun has gentrified rapidly, attracting young professionals and families with trendy cafés, breweries, and boutiques opening along Wellington Street — now one of Montréal\'s fastest-growing and trendiest boroughs.', points: 20, emoji: '📈' },
+      { type: 'observation', text: 'Find a microbrewery or craft beer bar on or near Wellington Street. What is one beer style or specialty they advertise?', hint: 'Several craft breweries have opened in Verdun in recent years.', answer: 'Varies by establishment — IPAs, sours, and Québec-brewed lagers are common.', points: 15, emoji: '🍺' },
+      { type: 'photo', text: 'From the riverside path, look across the water toward Île-des-Sœurs (Nuns\' Island). Photograph the view, including the bridge connecting the island.', hint: 'Walk to the eastern end of the Verdun waterfront for the clearest view.', answer: 'The Champlain Bridge or local pedestrian crossings connect to Île-des-Sœurs, visible across the river.', points: 15, emoji: '🌉' },
+    ],
+    bonus: { type: 'trivia', text: 'BONUS: Despite the sandy beach, swimming is banned at Plage de Verdun. Why is swimming prohibited in the St. Lawrence River at this location?', hint: 'Think about what\'s dangerous about river currents near a major shipping channel.', answer: 'Strong and unpredictable currents, cold water temperatures, and boat traffic in the St. Lawrence shipping channel make swimming dangerous — the "beach" is for sunbathing and recreation only, not swimming.', points: 35, emoji: '🌊' }
+  },
+  {
+    id: 'griffintown-2hr',
+    lat: 45.4920, lng: -73.5640,
+    img: 'https://images.unsplash.com/photo-1444723121867-7a241cacace9?w=640&q=80',
+    route: [
+      { lat: 45.4937, lng: -73.5618, label: 'Start: Square-Victoria Metro' },
+      { lat: 45.4920, lng: -73.5640, label: 'Rue Notre-Dame Ouest' },
+      { lat: 45.4900, lng: -73.5670, label: 'Lachine Canal entrance' },
+      { lat: 45.4880, lng: -73.5690, label: 'New Griffintown condos' },
+      { lat: 45.4940, lng: -73.5660, label: 'Saint Ann\'s Church ruins' }
+    ],
+    title: 'Griffintown: Then & Now',
+    district: 'Griffintown',
+    duration: '1.5 hours',
+    distance: '3km',
+    stops: 6,
+    difficulty: 'Easy',
+    color: '#003DA5',
+    emoji: '🏗',
+    startAt: 'Square-Victoria–OACI metro station (Orange Line)',
+    description: 'From 19th-century Irish immigrant slum to Montréal\'s fastest-redeveloped neighbourhood — Griffintown tells the story of the city\'s industrial past and condo-driven future.',
+    clues: [
+      { type: 'trivia', text: 'Griffintown was historically home to which immigrant community starting in the early 1800s?', hint: 'Think about the name "Griffintown" and 19th-century Montréal immigration patterns.', answer: 'Irish immigrants, many fleeing famine, who worked on the Lachine Canal and in nearby factories', points: 15, emoji: '☘',
+        choices: ['Irish immigrants', 'Italian immigrants', 'German immigrants', 'Scottish immigrants'], correctIndex: 0 },
+      { type: 'observation', text: 'Walk along Rue Notre-Dame Ouest through Griffintown. Compare the old industrial buildings to the new glass condo towers. What materials dominate the NEW construction versus the OLD?', hint: 'Look up and around — contrast brick/stone industrial buildings with modern towers.', answer: 'Old buildings: brick and stone (former factories/warehouses). New construction: glass and steel high-rise condos.', points: 15, emoji: '🏢' },
+      { type: 'riddle', text: 'I am the ruins of a 19th-century church that served Griffintown\'s Irish Catholic community. My walls still stand as a memorial park, though my roof is long gone. What is my name?', hint: 'Search for a small park containing church-shaped stone wall ruins.', answer: 'Saint Ann\'s Church ruins (Parc des Murs-à-Murs / Saint Ann\'s Park)', points: 25, emoji: '⛪' },
+      { type: 'photo', text: 'Griffintown has rapidly become one of the densest condo-development zones in Canada. Find a construction site or crane and photograph the contrast between old and new buildings nearby.', hint: 'Construction is extremely common throughout Griffintown — look in any direction.', answer: 'Varies — Griffintown has had one of the highest concentrations of active construction cranes in North America in recent years.', points: 20, emoji: '🏗' },
+      { type: 'trivia', text: 'The Lachine Canal runs along Griffintown\'s southern edge. What is the canal primarily used for TODAY (not in the 1800s)?', hint: 'Think recreation rather than industry — what do you see people doing on the water and path today?', answer: 'Recreation: cycling, walking, kayaking, and pleasure boating — commercial shipping ended when the St. Lawrence Seaway opened in 1959', points: 15, emoji: '🚣' },
+      { type: 'observation', text: 'Find any street or building name in Griffintown that references its Irish heritage (e.g., a street name, pub name, or shamrock symbol). Note what you find.', hint: 'Look at street signs and pub signage throughout the neighbourhood.', answer: 'Varies — Griffintown has streets and a few pubs referencing Irish heritage, plus historical markers.', points: 15, emoji: '☘' },
+    ],
+    bonus: { type: 'trivia', text: 'BONUS: A famous (though disputed) Griffintown ghost story involves "Mary Gallagher," allegedly murdered in 1879. Local legend says her ghost appears every 7 years on the same street. What is the central premise of this urban legend?', hint: 'It involves a missing body part and a recurring date.', answer: 'According to legend, Mary Gallagher was murdered and decapitated by her friend in a jealous rage; her ghost is said to return every seven years to the corner of William and Murray streets, searching for her missing head. Police actually monitor the corner on the rumored dates due to crowds.', points: 40, emoji: '👻' }
+  },
+  {
+    id: 'latinquarter-2hr',
+    lat: 45.5145, lng: -73.5640,
+    img: 'https://images.unsplash.com/photo-1481277542470-605612bd2d61?w=640&q=80',
+    route: [
+      { lat: 45.5152, lng: -73.5618, label: 'Start: Berri-UQAM Metro' },
+      { lat: 45.5160, lng: -73.5650, label: 'UQAM campus' },
+      { lat: 45.5175, lng: -73.5660, label: 'Rue Saint-Denis' },
+      { lat: 45.5195, lng: -73.5670, label: 'Cinémathèque québécoise' },
+      { lat: 45.5140, lng: -73.5600, label: 'Grande Bibliothèque' }
+    ],
+    title: 'Quartier Latin Student Life',
+    district: 'Quartier Latin',
+    duration: '1.5 hours',
+    distance: '2.8km',
+    stops: 6,
+    difficulty: 'Easy',
+    color: '#F07F00',
+    emoji: '📚',
+    startAt: 'Berri-UQAM metro station (Orange/Green/Yellow Lines)',
+    description: 'The student and intellectual heart of francophone Montréal, anchored by UQAM and Montréal\'s flagship library, with terrasses, bookshops, and bohemian energy.',
+    clues: [
+      { type: 'trivia', text: 'UQAM stands for Université du Québec à Montréal. What year was UQAM founded?', hint: 'Look for a founding date on a plaque or cornerstone near the main UQAM buildings.', answer: '1969', points: 15, emoji: '🎓',
+        choices: ['1920', '1969', '1985', '2001'], correctIndex: 1 },
+      { type: 'observation', text: 'Walk through the UQAM campus. The university incorporated parts of an older church into its modern structure. Can you find the church spire integrated into the campus buildings?', hint: 'Look up while walking through the central UQAM plaza — an old Gothic spire rises among modern buildings.', answer: 'The spire of the former Saint-Jacques Cathedral / Église Saint-Jacques is preserved and integrated into the UQAM Pavillon Judith-Jasmin', points: 20, emoji: '⛪' },
+      { type: 'riddle', text: 'I am Québec\'s flagship public library, a strikingly modern green-glass building. I hold millions of items and opened in 2005. What is my name?', hint: 'Walk south toward Berri street — look for a large modern glass building.', answer: 'La Grande Bibliothèque (Bibliothèque et Archives nationales du Québec, BAnQ)', points: 15, emoji: '📚' },
+      { type: 'photo', text: 'Walk along Rue Saint-Denis through the Quartier Latin. This street is famous for summer terrasse (sidewalk café) culture. Count the number of outdoor terrasses you see in 2 blocks.', hint: 'In warm months, restaurants extend seating onto the sidewalk — count distinct terrasses.', answer: 'Typically 8-15 terrasses on a 2-block stretch in summer', points: 15, emoji: '☕' },
+      { type: 'trivia', text: 'The Quartier Latin gets its name from a similar student district in Paris. What is that Parisian district called?', hint: 'Famous for the Sorbonne and intellectual life since the Middle Ages.', answer: 'The Latin Quarter (Quartier Latin) of Paris, historically associated with the Sorbonne and university life', points: 15, emoji: '🇫🇷' },
+      { type: 'observation', text: 'Find Cinémathèque québécoise, an institution dedicated to preserving Québec and world cinema. What type of programming do they typically offer (beyond just screenings)?', hint: 'Check posted schedules or signage at the building entrance.', answer: 'Film screenings, retrospectives, archival preservation, exhibitions on film history, and educational programming', points: 15, emoji: '🎬' },
+    ],
+    bonus: { type: 'trivia', text: 'BONUS: UQAM\'s Pavillon Judith-Jasmin preserves the spire of the former Saint-Jacques Cathedral, which partially burned down in 1852. Why did the university choose to preserve and incorporate the ruin rather than demolish it?', hint: 'Think about heritage preservation movements and what the structure represented.', answer: 'The cathedral ruin (and especially its surviving spire and walls) was preserved as a heritage and architectural statement — UQAM\'s 1979 Pavillon Judith-Jasmin was deliberately designed to incorporate the historic remnant, blending the university\'s modern identity with Montréal\'s religious and architectural history rather than erasing it.', points: 40, emoji: '🏛' }
+  },
+  {
+    id: 'westmount-2hr',
+    lat: 45.4850, lng: -73.5980,
+    img: 'https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=640&q=80',
+    route: [
+      { lat: 45.4880, lng: -73.5950, label: 'Start: Vendôme Metro' },
+      { lat: 45.4850, lng: -73.5980, label: 'Westmount Square' },
+      { lat: 45.4830, lng: -73.6010, label: 'Westmount Park' },
+      { lat: 45.4815, lng: -73.6040, label: 'Victoria Village shops' },
+      { lat: 45.4870, lng: -73.6005, label: 'Westmount Summit lookout' }
+    ],
+    title: 'Westmount Heritage Walk',
+    district: 'Westmount',
+    duration: '2 hours',
+    distance: '4km',
+    stops: 7,
+    difficulty: 'Moderate',
+    color: '#9B0B23',
+    emoji: '🏰',
+    startAt: 'Vendôme metro station (Orange Line)',
+    description: 'An independent municipality within Montréal\'s borders — old-money mansions, manicured parks, and one of the highest-income neighbourhoods in Canada.',
+    clues: [
+      { type: 'trivia', text: 'Westmount is technically its own city, separate from Montréal, despite being surrounded by it. What is this type of enclave municipality called?', hint: 'Look up Westmount\'s governmental status — it has its own mayor and city council.', answer: 'A "demerged municipality" or independent enclave city — Westmount voted to remain separate after Québec\'s 2002 municipal mergers and reorganization', points: 15, emoji: '🏛',
+        choices: ['A demerged independent municipality', 'A federal district', 'A borough of Montréal', 'A First Nations reserve'], correctIndex: 0 },
+      { type: 'observation', text: 'Walk to Westmount Square, a modernist complex of black towers. Who designed this internationally significant building, completed in 1967?', hint: 'Look for an architectural plaque near the entrance — this architect is world-famous for minimalist glass-and-steel towers.', answer: 'Ludwig Mies van der Rohe, the renowned modernist architect (also designed Toronto-Dominion Centre and Seagram Building NYC)', points: 25, emoji: '🏢' },
+      { type: 'photo', text: 'Walk through Westmount Park. Find the large Victorian greenhouse/conservatory. Photograph it.', hint: 'The park has a historic glass conservatory near its centre.', answer: 'The Westmount Conservatory (Greenhouse), a heritage Victorian-era glass structure', points: 15, emoji: '🌿' },
+      { type: 'riddle', text: 'I am a stately public library in Westmount Park, one of the first free public libraries in Québec when I opened in 1899. What is my name?', hint: 'Look for a grand stone building at the edge of the park.', answer: 'Westmount Public Library', points: 15, emoji: '📚' },
+      { type: 'trivia', text: 'Westmount sits on the southwestern slope of Mont-Royal and has commanding views of the city. Walk uphill to find a lookout point. What can you see from the Westmount Summit lookout?', hint: 'Climb toward the upper streets of Westmount for the best vantage point.', answer: 'Panoramic views of downtown Montréal, the St. Lawrence River, and on clear days, the Monteregian hills in the distance', points: 15, emoji: '🌆' },
+      { type: 'observation', text: 'Walk through Victoria Village (Westmount\'s small shopping district on Sherbrooke St). How does the architecture and storefront style compare to a typical Montréal commercial street?', hint: 'Notice the uniformity, signage rules, and upscale character of the shops.', answer: 'Victoria Village has notably uniform, restrained signage (strict municipal bylaws), high-end boutiques, and a manicured, almost English-village aesthetic distinct from more eclectic Montréal commercial strips.', points: 20, emoji: '🛍' },
+      { type: 'photo', text: 'Find the most impressive heritage mansion you can on a residential street off Sherbrooke or The Boulevard. Many date from 1900-1930. Photograph it.', hint: 'Streets like Forden, Sunnyside, and Upper Roslyn have grand historic homes.', answer: 'Varies — Westmount has some of Canada\'s most valuable and architecturally significant residential real estate.', points: 20, emoji: '🏠' },
+    ],
+    bonus: { type: 'trivia', text: 'BONUS: Westmount Square was one of the last major works by architect Ludwig Mies van der Rohe before his death in 1969. What design philosophy is Mies van der Rohe most famous for, often summarized in a famous phrase?', hint: 'This phrase is one of the most quoted lines in architecture history.', answer: '"Less is more" — Mies van der Rohe pioneered minimalist modernist architecture using exposed steel frames, glass curtain walls, and open floor plans, stripping away ornamentation in favor of structural honesty.', points: 35, emoji: '🏗' }
+  },
+  {
+    id: 'iledessoeurs-2hr',
+    lat: 45.4600, lng: -73.5450,
+    img: 'https://images.unsplash.com/photo-1465056836041-7f43ac27dcb5?w=640&q=80',
+    route: [
+      { lat: 45.4615, lng: -73.5435, label: 'Start: Île-des-Sœurs area' },
+      { lat: 45.4600, lng: -73.5450, label: 'Parc René-Lévesque' },
+      { lat: 45.4580, lng: -73.5480, label: 'Habitat 67' },
+      { lat: 45.4980, lng: -73.5520, label: 'Cité du Havre walkway' },
+      { lat: 45.5083, lng: -73.5289, label: 'Casino / Île Notre-Dame' }
+    ],
+    title: 'Habitat 67 & the River Islands',
+    district: 'Île Notre-Dame / Cité du Havre',
+    duration: '2.5 hours',
+    distance: '5km',
+    stops: 7,
+    difficulty: 'Moderate',
+    color: '#003DA5',
+    emoji: '🏙',
+    startAt: 'Bus 168 from Bonaventure metro to Cité du Havre, or taxi/rideshare recommended',
+    description: 'Modernist architecture icons, Expo 67 legacy, and sweeping river views on Montréal\'s most unusual residential peninsula.',
+    clues: [
+      { type: 'trivia', text: 'Habitat 67 is one of the most famous buildings in Canada — a stack of 354 identical prefabricated concrete boxes forming 146 apartments. Who designed it, and how old were they at the time?', hint: 'The architect was shockingly young — this was their thesis project turned reality for Expo 67.', answer: 'Moshe Safdie, who was just 23 years old when he designed it as his McGill University master\'s thesis project', points: 20, emoji: '🏗',
+        choices: ['Moshe Safdie, age 23', 'Mies van der Rohe, age 60', 'I.M. Pei, age 40', 'Frank Gehry, age 35'], correctIndex: 0 },
+      { type: 'observation', text: 'Looking at Habitat 67 from outside (public viewing areas only — it\'s a private residence), what makes its design structurally unique compared to a typical apartment building?', hint: 'Look at how the boxes are stacked and arranged.', answer: 'Each unit is made of stacked precast concrete modules arranged in varying combinations, giving every apartment multiple exposures, a private garden terrace (the roof of the unit below), and a unique shape — unlike typical uniform apartment towers', points: 15, emoji: '🧱' },
+      { type: 'riddle', text: 'I was the theme pavilion-turned-museum from Expo 67, originally the U.S. Pavilion designed as a geodesic dome. A fire destroyed my acrylic skin in 1976, leaving just my steel frame, which was later converted into an environmental museum. What is my name?', hint: 'Look across the water toward Île Sainte-Hélène for a distinctive sphere-shaped steel structure.', answer: 'The Biosphère (Biosphere Environment Museum), designed by Buckminster Fuller', points: 20, emoji: '🌐' },
+      { type: 'photo', text: 'Walk along the Cité du Havre walkway connecting toward the islands. Photograph the skyline view of downtown Montréal across the water — this is considered one of the best skyline photo spots in the city.', hint: 'The path along the peninsula offers an unobstructed view back toward downtown.', answer: 'Varies — this is one of the most iconic Montréal skyline photo locations.', points: 15, emoji: '📸' },
+      { type: 'trivia', text: 'Expo 67 (the 1967 World\'s Fair) was held on these reclaimed islands. Approximately how many visitors attended over the course of the fair?', hint: 'This was one of the most successful World\'s Fairs in history — find a historical marker with attendance figures.', answer: 'Over 50 million visitors attended Expo 67 between April and October 1967', points: 20, emoji: '🎪',
+        choices: ['About 5 million', 'About 20 million', 'About 50 million', 'About 100 million'], correctIndex: 2 },
+      { type: 'observation', text: 'Île Notre-Dame, one of the Expo 67 islands, was entirely artificial — built from scratch. Where did the millions of tons of fill material come from?', hint: 'Think about what major infrastructure project was happening in Montréal at the same time (1960s).', answer: 'Excavated rock and earth from the construction of the Montréal Metro (subway system), which was being built simultaneously in the early-to-mid 1960s', points: 20, emoji: '⛏' },
+      { type: 'photo', text: 'Find the Casino de Montréal, housed in the former French and Québec Pavilions from Expo 67. Photograph the building\'s distinctive Expo-era architecture.', hint: 'The casino retains much of its original 1967 exterior design.', answer: 'The Casino occupies the former France and Québec Pavilions, retaining their distinctive late-1960s modernist architecture.', points: 15, emoji: '🎰' },
+    ],
+    bonus: { type: 'trivia', text: 'BONUS: Moshe Safdie intended Habitat 67 to be a prototype for affordable, dignified urban housing that could be mass-produced worldwide. Did this vision succeed as originally intended? What happened instead?', hint: 'Think about construction costs versus the original goal of affordability.', answer: 'The vision largely did NOT succeed as intended — construction costs ended up far higher than projected for modular prefabricated housing, making Habitat 67 expensive to build per unit. Rather than becoming an affordable housing model replicated worldwide, it became a one-of-a-kind architectural icon and today its apartments are among the most expensive and sought-after real estate in Montréal.', points: 40, emoji: '💰' }
   }
 ];
 
@@ -1930,6 +2382,11 @@ let scoringEnabled = false;
 let teams = [];
 let completedClues = {};
 let currentEatFilter = 'all';
+let huntTimers = {};        // { huntId: { startTime, elapsedSeconds, running, intervalId } }
+let huntCompletions = {};   // { huntId: { finishedAt, totalTimeSeconds } } - passport records
+let bonusRevealed = {};     // { huntId: true/false }
+let bonusCompleted = {};    // { huntId: true/false }
+let mcqSelections = {};     // { 'huntId-idx': selectedChoiceIndex }
 
 // =============================================
 // NAVIGATION
@@ -2199,6 +2656,90 @@ function renderMetroStations() {
 // SCAVENGER HUNT
 // =============================================
 
+// ---- Timer ----
+function formatTime(totalSeconds) {
+  const h = Math.floor(totalSeconds / 3600);
+  const m = Math.floor((totalSeconds % 3600) / 60);
+  const s = totalSeconds % 60;
+  const pad = (n) => String(n).padStart(2, '0');
+  return h > 0 ? `${h}:${pad(m)}:${pad(s)}` : `${pad(m)}:${pad(s)}`;
+}
+
+function getTimerState(huntId) {
+  if (!huntTimers[huntId]) {
+    huntTimers[huntId] = { startTime: null, elapsedSeconds: 0, running: false, intervalId: null };
+  }
+  return huntTimers[huntId];
+}
+
+function startTimer(huntId) {
+  const t = getTimerState(huntId);
+  if (t.running) return;
+  t.running = true;
+  t.startTime = Date.now() - (t.elapsedSeconds * 1000);
+  t.intervalId = setInterval(() => updateTimerDisplay(huntId), 1000);
+  updateTimerDisplay(huntId);
+  renderHuntTimerControls(huntId);
+}
+
+function pauseTimer(huntId) {
+  const t = getTimerState(huntId);
+  if (!t.running) return;
+  t.running = false;
+  if (t.intervalId) clearInterval(t.intervalId);
+  t.intervalId = null;
+  renderHuntTimerControls(huntId);
+}
+
+function resetTimer(huntId) {
+  const t = getTimerState(huntId);
+  if (t.intervalId) clearInterval(t.intervalId);
+  huntTimers[huntId] = { startTime: null, elapsedSeconds: 0, running: false, intervalId: null };
+  updateTimerDisplay(huntId);
+  renderHuntTimerControls(huntId);
+}
+
+function updateTimerDisplay(huntId) {
+  const t = getTimerState(huntId);
+  if (t.running && t.startTime) {
+    t.elapsedSeconds = Math.floor((Date.now() - t.startTime) / 1000);
+  }
+  const el = document.getElementById('timer-display-' + huntId);
+  if (el) el.textContent = formatTime(t.elapsedSeconds);
+}
+
+function renderHuntTimerControls(huntId) {
+  const t = getTimerState(huntId);
+  const el = document.getElementById('timer-controls-' + huntId);
+  if (!el) return;
+  el.innerHTML = t.running
+    ? `<button class="timer-btn timer-btn-pause" data-action="pause-timer" data-hunt="${huntId}">⏸ Pause</button>`
+    : `<button class="timer-btn timer-btn-start" data-action="start-timer" data-hunt="${huntId}">▶ ${t.elapsedSeconds > 0 ? 'Resume' : 'Start'}</button>
+       ${t.elapsedSeconds > 0 ? `<button class="timer-btn timer-btn-stop" data-action="reset-timer" data-hunt="${huntId}">↺ Reset</button>` : ''}`;
+}
+
+// ---- Confetti ----
+function fireConfetti() {
+  let layer = document.getElementById('confetti-layer');
+  if (!layer) {
+    layer = document.createElement('div');
+    layer.id = 'confetti-layer';
+    document.body.appendChild(layer);
+  }
+  const colors = ['#C8102E', '#D4A72C', '#2D7A4F', '#003DA5', '#9B59B6'];
+  for (let i = 0; i < 60; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + 'vw';
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDuration = (2.5 + Math.random() * 1.5) + 's';
+    piece.style.animationDelay = (Math.random() * 0.4) + 's';
+    piece.style.transform = `rotate(${Math.random()*360}deg)`;
+    layer.appendChild(piece);
+    setTimeout(() => piece.remove(), 4500);
+  }
+}
+
 function setMode(mode) {
   huntMode = mode;
   document.getElementById('mode-solo').classList.toggle('selected', mode === 'solo');
@@ -2251,6 +2792,10 @@ function renderHunts() {
     const done = completed.length;
     const pct = Math.round((done / total) * 100);
     const routePoints = (hunt.route || []).map((r, i) => ({ lat: r.lat, lng: r.lng, emoji: String(i+1), label: r.label }));
+    const t = getTimerState(key);
+    const isFullyDone = done === total;
+    const bonusDone = bonusCompleted[key];
+    const bonusShown = bonusRevealed[key];
 
     return `
       <div class="hunt-card">
@@ -2282,8 +2827,24 @@ function renderHunts() {
           </div>
         </div>
         <div class="hunt-body">
+
+          ${isFullyDone ? `
+            <div class="completion-banner">
+              <div class="completion-banner-title">🎉 Hunt Complete!</div>
+              <div class="completion-banner-sub">Finished in ${formatTime(t.elapsedSeconds)} ${huntCompletions[key] ? '· Stamped in your passport' : ''}</div>
+            </div>
+          ` : ''}
+
           <p style="font-size:13px;font-family:sans-serif;color:var(--subtext);margin-bottom:10px;">${hunt.description}</p>
           <div style="font-size:11px;font-family:sans-serif;font-weight:600;color:var(--subtext);margin-bottom:6px;">🚇 Start: ${hunt.startAt}</div>
+
+          <div class="hunt-timer">
+            <div>
+              <div class="hunt-timer-label">Your Time</div>
+              <div class="hunt-timer-display" id="timer-display-${key}">${formatTime(t.elapsedSeconds)}</div>
+            </div>
+            <div class="hunt-timer-controls" id="timer-controls-${key}"></div>
+          </div>
 
           ${routePoints.length ? buildMiniMapHTML(routePoints, { color: hunt.color, showRoute: true }) : ''}
 
@@ -2296,32 +2857,189 @@ function renderHunts() {
           <div style="font-size:11px;font-family:sans-serif;color:var(--subtext);margin-bottom:12px;">${pct}% complete</div>
           ${hunt.clues.map((clue, idx) => {
             const isDone = completed.includes(idx);
+            const mcqKey = key + '-' + idx;
+            const selected = mcqSelections[mcqKey];
+            const hasChoices = Array.isArray(clue.choices) && clue.choices.length > 0;
+
             return `
-              <div class="hunt-clue ${isDone ? 'completed' : ''}" id="clue-${key}-${idx}" data-action="toggle-clue" data-hunt="${key}" data-idx="${idx}">
+              <div class="hunt-clue ${isDone ? 'completed' : ''}" id="clue-${key}-${idx}" ${hasChoices ? '' : `data-action="toggle-clue" data-hunt="${key}" data-idx="${idx}"`}>
                 <div class="clue-num">${isDone ? '✓' : idx+1}</div>
                 <div class="clue-content">
                   <div class="clue-type">${clue.emoji} ${clue.type}</div>
                   <div class="clue-text">${clue.text}</div>
                   <div class="clue-hint" id="hint-${key}-${idx}">💡 Hint: ${clue.hint}</div>
-                  <div class="clue-answer" id="answer-${key}-${idx}">✅ Answer: ${clue.answer}</div>
+
+                  ${hasChoices ? `
+                    <div class="mcq-choices">
+                      ${clue.choices.map((choice, cIdx) => {
+                        let cls = 'mcq-choice';
+                        if (selected !== undefined) {
+                          cls += ' mcq-disabled';
+                          if (cIdx === clue.correctIndex) cls += ' mcq-correct';
+                          else if (cIdx === selected) cls += ' mcq-wrong';
+                        }
+                        return `<button class="${cls}" data-action="select-mcq" data-hunt="${key}" data-idx="${idx}" data-choice="${cIdx}">${choice}</button>`;
+                      }).join('')}
+                    </div>
+                    ${selected !== undefined ? `
+                      <div class="mcq-feedback ${selected === clue.correctIndex ? 'correct' : 'wrong'}">
+                        ${selected === clue.correctIndex ? '✅ Correct!' : '❌ Not quite — correct answer highlighted above.'}
+                      </div>
+                    ` : ''}
+                  ` : `
+                    <div class="clue-answer" id="answer-${key}-${idx}">✅ Answer: ${clue.answer}</div>
+                  `}
+
                   ${scoringEnabled ? '<div class="clue-points">' + clue.points + ' pts</div>' : ''}
                 </div>
                 <div style="display:flex;flex-direction:column;gap:4px;margin-left:6px;flex-shrink:0;">
                   <button class="btn btn-sm btn-secondary" style="font-size:10px;padding:4px 8px;" data-action="show-hint" data-hunt="${key}" data-idx="${idx}">Hint</button>
-                  <button class="btn btn-sm btn-secondary" style="font-size:10px;padding:4px 8px;" data-action="show-answer" data-hunt="${key}" data-idx="${idx}">Answer</button>
+                  ${hasChoices ? '' : `<button class="btn btn-sm btn-secondary" style="font-size:10px;padding:4px 8px;" data-action="show-answer" data-hunt="${key}" data-idx="${idx}">Answer</button>`}
                 </div>
               </div>
             `;
           }).join('')}
+
+          ${hunt.bonus ? `
+            <div class="bonus-card">
+              <div class="bonus-header">⭐ Bonus Challenge (+${hunt.bonus.points} pts)</div>
+              ${!bonusShown ? `
+                <button class="bonus-reveal-btn" data-action="reveal-bonus" data-hunt="${key}">🎁 Reveal Bonus Challenge</button>
+              ` : `
+                <div class="clue-text" style="margin-bottom:8px;">${hunt.bonus.text}</div>
+                <div class="clue-hint" style="display:block;margin-bottom:8px;">💡 Hint: ${hunt.bonus.hint}</div>
+                ${bonusDone
+                  ? `<div class="mcq-feedback correct">✅ Bonus complete! Answer: ${hunt.bonus.answer}</div>`
+                  : `<button class="btn btn-primary btn-sm" data-action="complete-bonus" data-hunt="${key}">Mark Bonus Complete</button>`
+                }
+              `}
+            </div>
+          ` : ''}
         </div>
         <div class="hunt-actions">
-          <button class="btn btn-secondary btn-sm" data-action="reset-hunt" data-hunt="${key}">↺ Reset</button>
+          <button class="btn btn-secondary btn-sm" data-action="reset-hunt" data-hunt="${key}">↺ Reset Hunt</button>
           ${scoringEnabled && huntMode === 'teams' ? `
             <select style="flex:1;padding:6px;border:1px solid var(--mist);border-radius:4px;font-size:12px;font-family:sans-serif;" id="scoring-team-${key}">
               ${teams.map((t,i) => '<option value="' + i + '">' + t.name + '</option>').join('')}
             </select>
           ` : ''}
         </div>
+      </div>
+    `;
+  }).join('');
+
+  // Wire up timer control buttons + live displays after DOM is in place
+  SCAVENGER_HUNTS.forEach(hunt => {
+    renderHuntTimerControls(hunt.id);
+    updateTimerDisplay(hunt.id);
+  });
+}
+
+function selectMcqChoice(huntId, idx, choiceIdx) {
+  const mcqKey = huntId + '-' + idx;
+  if (mcqSelections[mcqKey] !== undefined) return; // already answered
+  mcqSelections[mcqKey] = choiceIdx;
+
+  const hunt = SCAVENGER_HUNTS.find(h => h.id === huntId);
+  const clue = hunt.clues[idx];
+  const isCorrect = choiceIdx === clue.correctIndex;
+
+  if (!completedClues[huntId]) completedClues[huntId] = [];
+  const arr = completedClues[huntId];
+  if (isCorrect && arr.indexOf(idx) === -1) {
+    arr.push(idx);
+    if (scoringEnabled) {
+      const teamIdx = getActiveTeamIndex(huntId);
+      teams[teamIdx].score += clue.points;
+      updateScoreDisplay();
+    }
+  } else if (!isCorrect && arr.indexOf(idx) === -1) {
+    // Wrong answer still marks the clue as "attempted/done" so progress moves on,
+    // but awards no points.
+    arr.push(idx);
+  }
+
+  renderHunts();
+  checkHuntCompletion(huntId);
+}
+
+function getActiveTeamIndex(huntId) {
+  if (huntMode === 'teams') {
+    const sel = document.getElementById('scoring-team-' + huntId);
+    return sel ? parseInt(sel.value) : 0;
+  }
+  return 0;
+}
+
+function revealBonus(huntId) {
+  bonusRevealed[huntId] = true;
+  renderHunts();
+}
+
+function completeBonus(huntId) {
+  bonusCompleted[huntId] = true;
+  const hunt = SCAVENGER_HUNTS.find(h => h.id === huntId);
+  if (scoringEnabled && hunt.bonus) {
+    const teamIdx = getActiveTeamIndex(huntId);
+    teams[teamIdx].score += hunt.bonus.points;
+    updateScoreDisplay();
+  }
+  renderHunts();
+  renderPassport();
+  fireConfetti();
+}
+
+function checkHuntCompletion(huntId) {
+  const hunt = SCAVENGER_HUNTS.find(h => h.id === huntId);
+  const completed = completedClues[huntId] || [];
+  if (completed.length === hunt.clues.length && !huntCompletions[huntId]) {
+    const t = getTimerState(huntId);
+    huntCompletions[huntId] = { finishedAt: Date.now(), totalTimeSeconds: t.elapsedSeconds };
+    pauseTimer(huntId);
+    fireConfetti();
+    renderPassport();
+  }
+}
+
+// =============================================
+// PASSPORT
+// =============================================
+
+function renderPassport() {
+  const statsContainer = document.getElementById('passport-stats');
+  const stampsContainer = document.getElementById('passport-stamps');
+  if (!statsContainer || !stampsContainer) return;
+
+  const totalHunts = SCAVENGER_HUNTS.length;
+  const earnedCount = Object.keys(huntCompletions).length;
+  const totalTime = Object.values(huntCompletions).reduce((sum, c) => sum + (c.totalTimeSeconds || 0), 0);
+  const totalBonusPoints = SCAVENGER_HUNTS.reduce((sum, h) => {
+    return sum + (bonusCompleted[h.id] && h.bonus ? h.bonus.points : 0);
+  }, 0);
+
+  statsContainer.innerHTML = `
+    <div>
+      <div class="passport-stat-num">${earnedCount}/${totalHunts}</div>
+      <div class="passport-stat-label">Districts Stamped</div>
+    </div>
+    <div>
+      <div class="passport-stat-num">${formatTime(totalTime)}</div>
+      <div class="passport-stat-label">Total Time</div>
+    </div>
+    <div>
+      <div class="passport-stat-num">${totalBonusPoints}</div>
+      <div class="passport-stat-label">Bonus Points</div>
+    </div>
+  `;
+
+  stampsContainer.innerHTML = SCAVENGER_HUNTS.map(h => {
+    const completion = huntCompletions[h.id];
+    const earned = !!completion;
+    return `
+      <div class="stamp ${earned ? 'earned' : ''}">
+        <div class="stamp-emoji">${h.emoji}</div>
+        <div class="stamp-name">${h.district}</div>
+        ${earned ? `<div class="stamp-time">${formatTime(completion.totalTimeSeconds)}</div>` : `<div class="stamp-time">Not yet visited</div>`}
       </div>
     `;
   }).join('');
@@ -2338,13 +3056,8 @@ function toggleClue(huntId, idx) {
   if (pos === -1) {
     arr.push(idx);
     if (scoringEnabled) {
-      if (huntMode === 'teams') {
-        const sel = document.getElementById('scoring-team-' + huntId);
-        const teamIdx = sel ? parseInt(sel.value) : 0;
-        teams[teamIdx].score += clue.points;
-      } else {
-        teams[0].score += clue.points;
-      }
+      const teamIdx = getActiveTeamIndex(huntId);
+      teams[teamIdx].score += clue.points;
       updateScoreDisplay();
     }
   } else {
@@ -2357,11 +3070,18 @@ function toggleClue(huntId, idx) {
   }
 
   renderHunts();
+  checkHuntCompletion(huntId);
 }
 
 function resetHunt(huntId) {
   delete completedClues[huntId];
+  delete huntCompletions[huntId];
+  delete bonusRevealed[huntId];
+  delete bonusCompleted[huntId];
+  Object.keys(mcqSelections).forEach(k => { if (k.startsWith(huntId + '-')) delete mcqSelections[k]; });
+  resetTimer(huntId);
   renderHunts();
+  renderPassport();
 }
 
 // =============================================
@@ -2604,6 +3324,7 @@ document.addEventListener('DOMContentLoaded', function() {
   renderRestaurants('all');
   renderNature();
   renderTips();
+  renderPassport();
 
   // ---- Nav tabs ----
   document.querySelectorAll('.nav-tab[data-page]').forEach(function(btn) {
@@ -2725,6 +3446,42 @@ document.addEventListener('DOMContentLoaded', function() {
       const lat = parseFloat(el.getAttribute('data-lat'));
       const lng = parseFloat(el.getAttribute('data-lng'));
       flyMainMapTo(lat, lng, parseInt(el.getAttribute('data-zoom')) || 15);
+      return;
+    }
+
+    if (action === 'start-timer') {
+      e.stopPropagation();
+      startTimer(el.getAttribute('data-hunt'));
+      return;
+    }
+
+    if (action === 'pause-timer') {
+      e.stopPropagation();
+      pauseTimer(el.getAttribute('data-hunt'));
+      return;
+    }
+
+    if (action === 'reset-timer') {
+      e.stopPropagation();
+      resetTimer(el.getAttribute('data-hunt'));
+      return;
+    }
+
+    if (action === 'select-mcq') {
+      e.stopPropagation();
+      selectMcqChoice(el.getAttribute('data-hunt'), parseInt(el.getAttribute('data-idx')), parseInt(el.getAttribute('data-choice')));
+      return;
+    }
+
+    if (action === 'reveal-bonus') {
+      e.stopPropagation();
+      revealBonus(el.getAttribute('data-hunt'));
+      return;
+    }
+
+    if (action === 'complete-bonus') {
+      e.stopPropagation();
+      completeBonus(el.getAttribute('data-hunt'));
       return;
     }
   });
